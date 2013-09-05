@@ -87,7 +87,7 @@ class Buffer :
     def update_profile(_id, extension,params):
         endpoint = "/".join([_id, "updates", extension])
         request_url = self.get_request_url("profile", endpoint)
-        resposne = self.requests_client.post(request_url, params)
+        response = self.requests_client.post(request_url, params)
         return response
 
 
