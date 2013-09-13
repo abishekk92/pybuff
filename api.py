@@ -1,92 +1,102 @@
 import requests
-from oauth_hook import OAuthHook
+from rauth import OAuth2Session 
 import json
+
 class Buffer :
     API_BASE_URL = "https://api.bufferapp.com/1"
     FORMAT = "json"
-    def __init__(access_token, access_key, consumer_key,
-                 consumer_secret):
+    CATEGORY_URL_MAPPING = {'user':'user',
+                            'profiles' : 'profiles',
+                            'updates' : 'updates',
+                            'shares' : 'links/shares',
+                            'config': 'info/configuration',}
 
-        oauth_hook = OAuthHook(access_token, access_key, consumer_key,
-                               consumer_secret)
-        self.requests_client = requests.session(hooks={'pre_request': oauth_hook})
+    def __init__(self,access_token, client_id, client_secret):
+        self.requests_client = OAuth2Session(client_id=client_id,
+                client_secret=client_secret,
+                access_token=access_token)
 
 
-    def get_user():
-        request_url = "%s/user.%s" % (API_BASE_URL, FORMAT)
+    def get_request_url(self,category, endpoint=None):
+        request_url = "/".join([self.API_BASE_URL,
+                                self.CATEGORY_URL_MAPPING[category]])
+        if endpoint is None:
+            request_url = "%s.%s" % (request_url, self.FORMAT)
+        else:
+            request_url = "%s/%s.%s" % (request_url, endpoint, self.FORMAT)
+        return request_url
+
+
+    def get_user(self):
+        request_url = "%s/user.%s" % (self.API_BASE_URL, self.FORMAT)
         response = self.requests_client.get(request_url)
         return response 
 
-    def get_profiles():
-        request_url = self.get_request_url("profile")
-        resposne = self.requests_client.get(request_url)
+    def get_profiles(self):
+        request_url = self.get_request_url("profiles")
+        response = self.requests_client.get(request_url)
         return response
 
-    def get_profile(_id,extension=None):
+    def normalize_for_extension(self,_,extension):
         if extension is not None:
-            endpoint = "/".join([_id, extension])
+            return "/".join([_, extension])
         else:
-            endpoint = _id
-        
-        request_url = self.get_request_url("profile", endpoint)
-        resposne = self.requests_client.get(request_url)
+            return _
+
+    def get_profile(self,_id,extension=None):
+        endpoint = self.normalize_for_extension(_id, extension)
+        request_url = self.get_request_url("profiles", endpoint)
+        response = self.requests_client.get(request_url)
         return response
 
-    def update_profile_schedule(_id, days, times):
+    def update_profile_schedule(self,_id, days, times):
         header = {"Content-Type": "application/json",}
         payload = [{"days": days,
-                    "times": times,},]
+            "times": times,},]
         payload = json.dumps(payload)
-        if extension is not None:
-            endpoint = "/".join([_id, extension])
-        else:
-            endpoint = _id
-        
-        request_url = self.get_request_url("profile", endpoint)
-        response = self.requests.post(request_url, data=payload,
-                                      headers=headers)
+        endpoint = self.normalize_for_extension(_id, extension)
+        request_url = self.get_request_url("profiles", endpoint)
+        response = requests.post(request_url, data=payload,
+                headers=headers)
         return response
-    
-    def get_shares(url):
+
+    def get_shares(self,url):
         request_url = self.get_request_url("shares")
         payload = {"url": url,}
-        resposne = self.requests_client.get(request_url, params=payload)
+        response = self.requests_client.get(request_url, params=payload)
         return response
 
-    def get_config():
+    def get_config(self):
         request_url = self.get_request_url("config")
-        resposne = self.requests_client.get(request_url)
+        response = self.requests_client.get(request_url)
         return response
 
-    def get_updates(_id, extension=None):
-        if extension is not None:
-            endpoint = "/".join([_id, extension])
-        else:
-            endpoint = _id
-        
+    def get_updates(self,_id, extension=None):
+        endpoint = self.normalize_for_extension(_id, extension)
         request_url = self.get_request_url("updates", endpoint)
         resposne = self.requests_client.get(request_url)
         return response
 
-    def update(_id,extension):
-        if extension is not None:
-            endpoint = "/".join([_id, extension])
-        else:
-            endpoint = _id
-        
-        request_url = self.get_request_url("update", endpoint)
-        response = self.requests.post(request_url)
+    def update(self,_id,extension,params):
+        endpoint = self.normalize_for_extension(_id, extension)
+        request_url = self.get_request_url("updates", endpoint)
+        response = self.requests_client.post(request_url, params)
         return response
 
-    def get_profile_updates(_id, extension):
+    def create_update(self,extension,params):
+        request_url = self.get_request_url("updates", extension)
+        response = self.requests_client.post(request_url, params)
+        return response
+    
+    def get_profile_updates(self,_id, extension):
         endpoint = "/".join([_id, "updates", extension])
-        request_url = self.get_request_url("profile", endpoint)
+        request_url = self.get_request_url("profiles", endpoint)
         resposne = self.requests_client.get(request_url)
         return response
 
-    def update_profile(_id, extension,params):
+    def update_profile(self,_id, extension,params):
         endpoint = "/".join([_id, "updates", extension])
-        request_url = self.get_request_url("profile", endpoint)
+        request_url = self.get_request_url("profiles", endpoint)
         response = self.requests_client.post(request_url, params)
         return response
 
