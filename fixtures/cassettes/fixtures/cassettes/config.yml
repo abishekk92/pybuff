@@ -1,0 +1,31 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, Bearer 1/d16ff05598dc4f8830bc9df238f3243b]
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3 Linux/3.5.0-23-generic]
+    host: api.bufferapp.com
+    method: GET
+    path: /1/info/configuration.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1XUW/aMBD+K52n7WU0QAhphYSmadKqSZO2h72VCbnhSFyS2LOdBVbx32s7TliR
+        oaDA03ghJ+fy+fx9d+fjCQngf0gEAo2ekCyJlMCNuWLVGuN0TlLQZo4z9UQ/rVcHRQnmOFL2NCUZ
+        kWjUD3odJKIEZkUK9eLNQC2SiOYGrx8qiERKNpp0J10hsSSR91DM58AxY15Es0mXZDgGod7a2CZd
+        G9l1P1z2Q4/lsdp94LdBGvjLgW+RwqANUhgsw8AgrdXhC8YolzCbkly9VOwQc/B7lEFe2Z3aVBYH
+        WQJIsTHRr7WCKXhq2CqElsPEJkxwdtMqJvVVgkUicbzb5+0bHTPmUfLx9/idP9CyHflNgHRIcxzB
+        A6WLV7LjS+3mSI9hr+fID3/YOj3q2E6QHw1U+wRpoA7MkJQsQGeCfmr6aKYTRWxMlRsdxNQ2Dr6v
+        fuj1C+nnIH1fQZZl6dV72qrU/inJFzAj+SvV8s24fc1dwt2cSbc6tBPo1kC1162BOlA3h1Cdl2Lq
+        Yok5LZiD76s788LBuu9ivd9rf4X9T7Rv9aiG9c80Yzhf7exVF/Jbk+/uVU2rqresQqouedU0mb3u
+        dasaM6AshfcLWJWUz8TYNDR1jBmVuRpQ9ne0T+q42sul7jA8z3TYxHaNU5bgE4i8heifQOztIA/T
+        fP/lY5A8XFG+cx7c8rIuwt5UMaVxpeAeVe+M04cj5ougtapVYCcQ0wK1l9ACHVitLC3E99zUpjXd
+        84Ue/YViFcTGdHVRq8Gxg95FiJZC7CtAjedV0TTD31r/wZsRbCqJRLLgMBXkL0wzPQ4qiV4u4qWS
+        zg/829t/Xunys+V4jx4ZaKoemf6NyVyfQ51ZRfYMRDlX3b8PAAA=
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '665',
+      content-type: application/json;charset=UTF-8, date: 'Sun, 08 Sep 2013 22:50:31
+        GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
+    status: {code: 200, message: Awesome}

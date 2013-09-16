@@ -1,0 +1,24 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, Bearer 1/d16ff05598dc4f8830bc9df238f3243b]
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3 Linux/3.5.0-23-generic]
+    host: api.bufferapp.com
+    method: GET
+    path: /1/user.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4WPwU6EQAyGX8X0jMvswLADJzXx5huIIWWmLBNghgyDiRrf3W40Gz3ZU/u1/f/2
+        AzpnoQElZaErI9DYklSp5VFwFBIyQJPcq0tvHSZojsVJV1ooqTIwkTCRvXKh6rrSGQyM90gbNM8v
+        XM14/kn/c/K4EE/c924babp5GFk5g3VGz3SIRFxFGihGnLvZ+YnxmNLatHmb9/vAHVzXgwlLm8c2
+        F3Vvhfq9k8JEF61rZyN+InW0oJuZf2vc2vKkEUtdC62UFIaslncpHP5Y8HZyC70Hf7n5cY9hpTZ/
+        Ct4GD59fSKU2iFgBAAA=
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '242',
+      content-type: application/json;charset=UTF-8, date: 'Sun, 08 Sep 2013 22:50:31
+        GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
+    status: {code: 200, message: Awesome}
