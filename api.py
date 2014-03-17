@@ -49,14 +49,17 @@ class Buffer :
     
     
     def update_profile_schedule(self,_id, days, times):
-        header = {"Content-Type": "application/json",}
-        payload = [{"days": days,
-            "times": times,},]
-        payload = json.dumps(payload)
-        endpoint = self.normalize_for_extension(_id, extension)
+        header = {"Content-Type": "application/x-www-form-urlencoded",}
+        schedule_format = "schedules[0][%s][]=%s&"
+        payload = ""
+        for day in days:
+            payload += schedule_format %("days", day)
+        for time in times:
+            payload += schedule_format %("times", time)
+        endpoint = normalize_for_extension(_id, "schedules/update")
         request_url = self.get_request_url("profiles", endpoint)
         response = requests.post(request_url, data=payload,
-                headers=headers)
+                headers=header)
         return response
 
     def get_shares(self,url):
@@ -101,3 +104,8 @@ class Buffer :
         return response
 
 
+    #def update(self,_id,extension,params):
+    #    endpoint = normalize_for_extension(_id, extension)
+    #    request_url = self.get_request_url("updates", endpoint)
+    #    response = self.requests_client.post(request_url, params)
+    #    return response
