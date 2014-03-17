@@ -1,6 +1,9 @@
 import requests
-from rauth import OAuth2Session 
+from rauth import OAuth2Session
+from utils import normalize_for_extension
 import json
+
+
 
 class Buffer :
     API_BASE_URL = "https://api.bufferapp.com/1"
@@ -37,18 +40,14 @@ class Buffer :
         response = self.requests_client.get(request_url).json()
         return response
 
-    def normalize_for_extension(self,_,extension):
-        if extension is not None:
-            return "/".join([_, extension])
-        else:
-            return _
 
     def get_profile(self,_id,extension=None):
-        endpoint = self.normalize_for_extension(_id, extension)
+        endpoint = normalize_for_extension(_id, extension)
         request_url = self.get_request_url("profiles", endpoint)
         response = self.requests_client.get(request_url).json()
         return response
-
+    
+    
     def update_profile_schedule(self,_id, days, times):
         header = {"Content-Type": "application/json",}
         payload = [{"days": days,
