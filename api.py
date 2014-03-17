@@ -73,24 +73,14 @@ class Buffer :
         response = self.requests_client.get(request_url).json()
         return response
 
-    def get_updates(self,_id, extension=None):
-        endpoint = self.normalize_for_extension(_id, extension)
+    def get_updates(self,_id, extension=None, params={}):
+        endpoint = normalize_for_extension(_id, extension)
         request_url = self.get_request_url("updates", endpoint)
         response = self.requests_client.get(request_url, params=params).json()
         return response
 
-    def update(self,_id,extension,params):
-        endpoint = self.normalize_for_extension(_id, extension)
-        request_url = self.get_request_url("updates", endpoint)
-        response = self.requests_client.post(request_url, params)
-        return response
-
-    def create_update(self,extension,params):
-        request_url = self.get_request_url("updates", extension)
-        response = self.requests_client.post(request_url, params)
-        return response
     
-    def get_profile_updates(self,_id, extension):
+    def get_profile_updates(self,_id, extension, params={}):
         endpoint = "/".join([_id, "updates", extension])
         request_url = self.get_request_url("profiles", endpoint)
         response = self.requests_client.get(request_url,
