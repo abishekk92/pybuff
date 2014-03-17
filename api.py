@@ -29,12 +29,12 @@ class Buffer :
 
     def get_user(self):
         request_url = "%s/user.%s" % (self.API_BASE_URL, self.FORMAT)
-        response = self.requests_client.get(request_url)
+        response = self.requests_client.get(request_url).json()
         return response 
 
     def get_profiles(self):
         request_url = self.get_request_url("profiles")
-        response = self.requests_client.get(request_url)
+        response = self.requests_client.get(request_url).json()
         return response
 
     def normalize_for_extension(self,_,extension):
@@ -46,7 +46,7 @@ class Buffer :
     def get_profile(self,_id,extension=None):
         endpoint = self.normalize_for_extension(_id, extension)
         request_url = self.get_request_url("profiles", endpoint)
-        response = self.requests_client.get(request_url)
+        response = self.requests_client.get(request_url).json()
         return response
 
     def update_profile_schedule(self,_id, days, times):
@@ -63,18 +63,18 @@ class Buffer :
     def get_shares(self,url):
         request_url = self.get_request_url("shares")
         payload = {"url": url,}
-        response = self.requests_client.get(request_url, params=payload)
+        response = self.requests_client.get(request_url, params=payload).json()
         return response
 
     def get_config(self):
         request_url = self.get_request_url("config")
-        response = self.requests_client.get(request_url)
+        response = self.requests_client.get(request_url).json()
         return response
 
     def get_updates(self,_id, extension=None):
         endpoint = self.normalize_for_extension(_id, extension)
         request_url = self.get_request_url("updates", endpoint)
-        resposne = self.requests_client.get(request_url)
+        response = self.requests_client.get(request_url, params=params).json()
         return response
 
     def update(self,_id,extension,params):
@@ -91,7 +91,8 @@ class Buffer :
     def get_profile_updates(self,_id, extension):
         endpoint = "/".join([_id, "updates", extension])
         request_url = self.get_request_url("profiles", endpoint)
-        resposne = self.requests_client.get(request_url)
+        response = self.requests_client.get(request_url,
+                params=params).json()
         return response
 
     def update_profile(self,_id, extension,params):
