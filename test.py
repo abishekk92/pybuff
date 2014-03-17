@@ -1,6 +1,7 @@
 from os import getenv as ENV
 from api import Buffer
-import vcr 
+from utils import normalize_for_extension
+import vcr
 
 
 recorder = vcr.VCR(cassette_library_dir = 'fixtures/cassettes',)
@@ -30,7 +31,29 @@ with recorder.use_cassette('fixtures/cassettes/share.yml') as share:
     response = client.get_shares(url="http://www.google.com")
     assert share.responses[0]['status']['code'] == 200
 
-endpoint = client.normalize_for_extension("12345","foo/bar")
+with recorder.use_cassette('fixtures/cassettes/updates.yml') as update:
+    response = client.get_updates('5226f9b66771ca867e000013')
+    assert update.responses[0]['status']['code'] == 200
+
+with recorder.use_cassette('fixtures/cassettes/updates_ineraction.yml') as update:
+    response = client.get_updates('5226f9b66771ca867e000013', 'interactions', {'event' : 'retweet'})
+    assert update.responses[0]['status']['code'] == 200
+
+with recorder.use_cassette('fixtures/cassettes/pending_update.yml') as pending:
+    response = client.get_profile_updates('522386eaacd4e52a21000010', 'pending')
+    assert pending.responses[0]['status']['code'] == 200
+
+with recorder.use_cassette('fixtures/cassettes/sent_update.yml') as sent:
+    response = client.get_profile_updates('522386eaacd4e52a21000010', 'sent')
+    assert sent.responses[0]['status']['code'] == 200
+
+with recorder.use_cassette('fixtures/cassettes/pending_update_with_params.yml') as pending_with_params:
+    response = client.get_profile_updates('522386eaacd4e52a21000010', 'pending', params={'count' : 10})
+    assert pending_with_params.responses[0]['status']['code'] == 200
+
+with recorder.use_cassette('fixtures/cassettes/sent_update.yml') as sent_with_params:
+    response = client.get_profile_updates('522386eaacd4e52a21000010', 'sent', params={'count' : 10})
+    assert sent_with_params.responses[0]['status']['code'] == 200
+
+endpoint = normalize_for_extension("12345","foo/bar")
 assert endpoint == "12345/foo/bar"
-
-

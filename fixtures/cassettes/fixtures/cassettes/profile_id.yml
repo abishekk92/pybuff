@@ -19,3 +19,47 @@
       content-type: application/json;charset=UTF-8, date: 'Sun, 08 Sep 2013 22:50:32
         GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
     status: {code: 404, message: Not Found}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.5 Darwin/13.1.0]
+    host: api.bufferapp.com
+    method: GET
+    path: /1/profiles/4eb854340acb04e870000010.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwMAAAAAAAAAAAA=
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '20',
+      content-type: text/html; charset=UTF-8, date: 'Mon, 17 Mar 2014 09:15:10 GMT',
+      server: Apache, vary: 'Accept-Encoding,User-Agent', www-authenticate: 'OAuth
+        realm=''Service'', error=''invalid_request'', error_description=''The request
+        is missing a required parameter, includes an unsupported parameter or parameter
+        value, repeats the same parameter, uses more than one method for including
+        an access token, or is otherwise malformed.'''}
+    status: {code: 401, message: Authorization Required}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, Bearer 1/d16ff05598dc4f8830bc9df238f3243b]
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.5 Darwin/13.1.0]
+    host: api.bufferapp.com
+    method: GET
+    path: /1/profiles/4eb854340acb04e870000010.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6tWSi0qyi9SslIKKMpPy8xJVUjOL81JUcjLL1FISlVIyy/NS1HSUUrOT0lVsjI0
+        MDSoBQD5l/SCMgAAAA==
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '70',
+      content-type: application/json;charset=UTF-8, date: 'Mon, 17 Mar 2014 09:24:01
+        GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
+    status: {code: 404, message: Not Found}

@@ -28,3 +28,57 @@
       content-type: application/json;charset=UTF-8, date: 'Sun, 08 Sep 2013 22:50:31
         GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
     status: {code: 200, message: Awesome}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.5 Darwin/13.1.0]
+    host: api.bufferapp.com
+    method: GET
+    path: /1/profiles.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwMAAAAAAAAAAAA=
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '20',
+      content-type: text/html; charset=UTF-8, date: 'Mon, 17 Mar 2014 09:15:09 GMT',
+      server: Apache, vary: 'Accept-Encoding,User-Agent', www-authenticate: 'OAuth
+        realm=''Service'', error=''invalid_request'', error_description=''The request
+        is missing a required parameter, includes an unsupported parameter or parameter
+        value, repeats the same parameter, uses more than one method for including
+        an access token, or is otherwise malformed.'''}
+    status: {code: 401, message: Authorization Required}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, Bearer 1/d16ff05598dc4f8830bc9df238f3243b]
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.5 Darwin/13.1.0]
+    host: api.bufferapp.com
+    method: GET
+    path: /1/profiles.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA71TTW/bMAz9K4PObiz5Q4592ge20467NYVB23SsxZZSS27QFfnvo5w2TYq2w4p1
+        OTgSSZF8j3yXd6xUDStYGkXxUtYC6ibBNFlGgtMvTljA4AYcjBTTObe1xSpchW1VN/piO5pW9XgB
+        C9jAAKprFhrdKuyOjs0F2C5ahYJnMhOiFHGcSMGTLCmFFLnM41xG5fXi53Z9LFTOZf5DudpM2lGh
+        O9aM0PoTD9gWdaP0ej5b1I4V0Z5CRwSHTQl0F3G25GlO2QLWYAtTT0Y3TkhXZaHqKa6l8GlESnl5
+        NZtrozXWlIIVeur7gLVmHMD5nBbHG1UjAf4GNVbGbNipeyK/hsH7P1XKdrj58LmjPgL2p7n1alAH
+        fNXUtkgTFB5U3WEz9b43ETCHMJQDDhWOHj9BvZ5UvSmtWmulH3CdvLkktuDWH9hgNFVxE9J3R8jo
+        3E2+91HR18492kkzYsCpYX7MBC9STnYhCx6xq/2VZ/kBf/uI/9542M3HMZ543O3Wv7mf/YnjZcJ8
+        F7+Mnj1WwSr8YnozVIZc/tGZEPgTQiMf5IbSjVBv5gVhqOdhk+MGx8r3Yqxj++BcUgiHTBEcMgn+
+        VFLzigNfuJ0a1ovaDKvwHlWpBlijXYUxz+mh5NmSxCCTCDNRp0sZZVDnqcziGPKsSYEvEZNS+93p
+        acnxVVFZ9V4lT4QFqr8t7bSmlE4ZTcYkeFZu4lW5Sc/b2+TWQm/xeb392CmyjC/J7SMc1meTR+dq
+        e3akypbVZJVGa49F36ZAA5Prymo0G9THVO8rS54XXHpZRgXP/X9aJP4ecW9/IlN3pO1cpTKLcimX
+        8V+K9Ixl68ApWpV6Zq01fW92MzExl/szBX+dRrPFVfjd6GZG/E8k7HaIpOGr3+2ljmIYBwAA
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '681',
+      content-type: application/json;charset=UTF-8, date: 'Mon, 17 Mar 2014 09:24:00
+        GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
+    status: {code: 200, message: Awesome}
