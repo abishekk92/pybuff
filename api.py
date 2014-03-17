@@ -1,6 +1,6 @@
 import requests
 from rauth import OAuth2Session
-from utils import normalize_for_extension
+from utils import normalize_for_extension, patch_params_for_requests 
 import json
 
 
@@ -90,12 +90,20 @@ class Buffer :
     def update_profile(self,_id, extension,params):
         endpoint = "/".join([_id, "updates", extension])
         request_url = self.get_request_url("profiles", endpoint)
-        response = self.requests_client.post(request_url, params)
+        params = patch_params_for_requests(params)
+        response = self.requests_client.post(request_url, data=params)
         return response
 
 
-    #def update(self,_id,extension,params):
-    #    endpoint = normalize_for_extension(_id, extension)
-    #    request_url = self.get_request_url("updates", endpoint)
-    #    response = self.requests_client.post(request_url, params)
-    #    return response
+    def update(self,_id, extension, params):
+        endpoint = normalize_for_extension(_id, extension)
+        request_url = self.get_request_url("updates", endpoint)
+        params = patch_params_for_requests(params)
+        response = self.requests_client.post(request_url, data=params)
+        return response
+    
+    def create_update(self, params):
+        request_url = self.get_request_url("updates", "create")
+        params = patch_params_for_requests(params)
+        response = self.requests_client.post(request_url, data=params)
+        return response
