@@ -19,7 +19,6 @@ class Buffer :
                 client_secret=client_secret,
                 access_token=access_token)
 
-
     def get_request_url(self,category, endpoint=None):
         request_url = "/".join([self.API_BASE_URL,
                                 self.CATEGORY_URL_MAPPING[category]])
@@ -49,7 +48,7 @@ class Buffer :
     
     
     def update_profile_schedule(self,_id, days, times):
-        header = {"Content-Type": "application/x-www-form-urlencoded",}
+        headers = {'Content-Type' : 'application/x-www-form-urlencoded'}
         schedule_format = "schedules[0][%s][]=%s&"
         payload = ""
         for day in days:
@@ -58,8 +57,7 @@ class Buffer :
             payload += schedule_format %("times", time)
         endpoint = normalize_for_extension(_id, "schedules/update")
         request_url = self.get_request_url("profiles", endpoint)
-        response = requests.post(request_url, data=payload,
-                headers=header)
+        response = requests.post(request_url, data=payload, headers=headers)
         return response
 
     def get_shares(self,url):
