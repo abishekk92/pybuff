@@ -3,8 +3,6 @@ from rauth import OAuth2Session
 from utils import normalize_for_extension, patch_params_for_requests 
 import json
 
-
-
 class Buffer :
     API_BASE_URL = "https://api.bufferapp.com/1"
     FORMAT = "json"
@@ -85,7 +83,7 @@ class Buffer :
                 params=params).json()
         return response
 
-    def update_profile(self,_id, extension,params):
+    def update_profile(self,_id, extension,params={}):
         endpoint = "/".join([_id, "updates", extension])
         request_url = self.get_request_url("profiles", endpoint)
         params = patch_params_for_requests(params)
