@@ -1,0 +1,28 @@
+- request: !!python/object:vcr.request.Request
+    body: text=foobar&profile_ids%5B%5D=522386eaacd4e52a21000010
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Content-Length, !!python/unicode '54']
+      - !!python/tuple [Authorization, Bearer 1/d16ff05598dc4f8830bc9df238f3243b]
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.5 Darwin/13.1.0]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Content-Type, application/x-www-form-urlencoded]
+    host: api.bufferapp.com
+    method: POST
+    path: /1/updates/create.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4WRwW7kIAyGX4XlPFoRCCQzx173sJe9rarIA6aLlAREoNNR1Xevk0ynlXrYXAj2
+        b/v/zCuvyUHBhZ/+vvIhOH7iWkmEBpzH5myFFo2RaJXz/MDtGHAuN5mUneg7Cda1qDV2vaCvMass
+        I/V0AxR+atRRa9MeO3XgDq5U+CeuJ90qflEcOyP2WAkTkkydWsPSRML/uUqYpwFdKHAeqbLkihTM
+        0eKyhPlpgBnGawmWID2My570YcQ7iOoNwg4iQTYbiOCfugXzc7Crq3IJpWCm3PIPMjHO8XJvuxQo
+        labwc/V+ExV8IULuYzzDx33wMU9AXdy3zOT0St7r3htyJcAqe2y0V0JYY1rVSGvUilyuaXOztj/c
+        3vD7viv5/spoxc7Y9jujklT8HIAEkAJ/ezzcnA+0UksvDU80pRH3sI11XmcQarXrej+2PdH/Jua/
+        Z2RTzMjKBbGwMLNrrJk9bA1+sl+IiYXCSkwJHavpB397B5o7VeiFAgAA
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '384',
+      content-type: application/json;charset=UTF-8, date: 'Sun, 23 Mar 2014 08:56:13
+        GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
+    status: {code: 200, message: Awesome}

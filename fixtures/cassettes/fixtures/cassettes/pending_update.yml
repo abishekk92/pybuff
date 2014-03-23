@@ -1,0 +1,28 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, Bearer 1/d16ff05598dc4f8830bc9df238f3243b]
+      - !!python/tuple [Accept, '*/*']
+      - !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.5 Darwin/13.1.0]
+    host: api.bufferapp.com
+    method: GET
+    path: /1/profiles/522386eaacd4e52a21000010/updates/pending.json
+    port: 443
+    protocol: https
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA51T22rcMBD9FaHnkLXkXd9IQqB5CKHQPuStLmYsj9Yi8gVJ3q0J+feOdzeXpYTS
+        +sVIc+bMOePjZx6GAJYX4oJPYwMBPS9+PPPKNLzgm1gmdZNolBprodN4jZu1zgW/4Moa7MMJFkmZ
+        pIkSSa7jtKkjjOgRaoE5JM6mgkAj4nwTrdM0p1kNzNT4OCxvOk34jthkYh0d74LpkGBCFlHOxo6Q
+        f5M1ousqbEyA2lJrcBPSpRsUem/6bQU92DkYRS41WH8samPx5ETKOEsQQDXEKUGKg5OIv+M8up1R
+        i6ywNyGgo5pvwZHJfti/0foAYaIpvJ60PoAC/gqLmYw9tiTFs3uzbe3MviwrMjtk33EYLbK7gd2Z
+        pYf2a+eCtSGMRbkqVwvTpZ3LlcCHbw9+YjsD7PYewYZ2/mp2RHoaU+nBdUDimv8ZeAVMWfD+uuST
+        syVnrUNNh0+FEMShJQSNRkcbZv2gB2uHPVUCuC0GKla1hf6p5Def8lyVK7g5uvqowS+cHZ4L8QeG
+        0ye4VENXrs428Y+aznoPOl5X2TWbQ+QEKFlnIoukQBSplGmeRSpuRJ4JWKIX5nFJhTX9E3/9mf4M
+        /uLmY9ZUdMzaOjtmLZbUTCsgAIyGv/x8+Q0eQ8QxowMAAA==
+    headers: {connection: keep-alive, content-encoding: gzip, content-length: '490',
+      content-type: application/json;charset=UTF-8, date: 'Mon, 17 Mar 2014 10:35:55
+        GMT', server: Apache, vary: 'Accept-Encoding,User-Agent', x-frame-options: SAMEORIGIN}
+    status: {code: 200, message: Awesome}
