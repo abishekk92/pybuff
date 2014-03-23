@@ -10,6 +10,7 @@ recorder = vcr.VCR(cassette_library_dir = 'fixtures/cassettes',)
 client = Buffer(ENV('buff_access_token'), ENV('buff_client_id'),
                 ENV('buff_client_secret'))
 
+
 def test_user():
     with recorder.use_cassette('fixtures/cassettes/user.yml') as user:
         response = client.get_user()
